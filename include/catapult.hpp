@@ -5,26 +5,26 @@ class catapult{
 public:
 
     //Control types are for driver control period
-    enum catapultControlTypes {
-        E_MANUALRETRACT,
-        E_AUTORETRACT
+    enum catapultStates {
+        E_DISABLED,
+        E_MANUAL,
+        E_MOVING,
+        E_HOLDING,
+        E_AUTOFIRE
     };
 
-    enum catapultPositions {
-        E_LOADED,
-        E_MOVING_UP,
-        E_MOVING_DOWN,
-        E_UNLOADED
-    };
+    int limitDB = 0;
+
     catapult();
 
     pros::Motor catapultMotor = pros::Motor(0);
 
-    int cataPosition;
-    int catapultControlType; 
+    pros::ADIButton cataLimit = pros::ADIButton(0);
+
+    int cataState = E_MANUAL;
 
     void opControl();
 
-    catapult::catapult(int cataport);
+    catapult(int cataport, int limitPort);
 
 };

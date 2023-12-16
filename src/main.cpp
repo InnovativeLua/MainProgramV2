@@ -1,6 +1,8 @@
 #include "main.h"
 #include "catapult.hpp"
 
+pros::Controller mainController(CONTROLLER_MASTER);
+
 /**
  * A callback function for LLEMU's center button.
  *
@@ -8,7 +10,9 @@
  * "I was pressed!" and nothing.
  */
 #define CATAPORT 7
+#define LIMIT_SWITCH 'A'
 pros::Motor cata_mtr(CATAPORT, pros::E_MOTOR_GEAR_100, false); //Initalizing the catapult motor object and sets to a red gear cartridge.
+
 
 void on_center_button() {
 	static bool pressed = false;
@@ -20,7 +24,8 @@ void on_center_button() {
 	}
 }
 
-catapult masterCata(CATAPORT);
+catapult masterCata(CATAPORT, LIMIT_SWITCH);
+
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -33,8 +38,6 @@ void initialize() {
 	pros::lcd::set_text(1, "Hello PROS User!");
 
 	pros::lcd::register_btn1_cb(on_center_button);
-
-	pros::Controller mainController(CONTROLLER_MASTER);
 
 	//masterWings.initilize(wingsPorts);
 }

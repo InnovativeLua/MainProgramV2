@@ -1,5 +1,6 @@
 #include "main.h"
 #include "catapult.hpp"
+#include "Ports.hpp"
 
 pros::Controller mainController(CONTROLLER_MASTER);
 
@@ -9,9 +10,10 @@ pros::Controller mainController(CONTROLLER_MASTER);
  * When this callback is fired, it will toggle line 2 of the LCD text between
  * "I was pressed!" and nothing.
  */
-#define CATAPORT 7
-#define LIMIT_SWITCH 'A'
+
 pros::Motor cata_mtr(CATAPORT, pros::E_MOTOR_GEAR_100, false); //Initalizing the catapult motor object and sets to a red gear cartridge.
+catapult masterCata(CATAPORT, LIMIT_SWITCH);
+
 
 
 void on_center_button() {
@@ -24,7 +26,6 @@ void on_center_button() {
 	}
 }
 
-catapult masterCata(CATAPORT, LIMIT_SWITCH);
 
 
 /**

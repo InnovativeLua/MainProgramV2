@@ -1,6 +1,5 @@
 #include "custom/mechs/catapult.hpp"
-
-pros::Controller mainController2(CONTROLLER_MASTER);
+#include "custom/brain/controller.hpp"
 
 void catapult::opControl(){
     switch(cataState) {
@@ -9,7 +8,7 @@ void catapult::opControl(){
         catapultMotor.move_velocity(100);
         break;
     case E_HOLDING:
-        if (mainController2.get_digital(pros::E_CONTROLLER_DIGITAL_L1)){
+        if (mainController.get_digital(pros::E_CONTROLLER_DIGITAL_L1)){
             catapultMotor.move_velocity(50);
             cataState = E_MOVING;
             limitDB = 0;
@@ -31,9 +30,9 @@ void catapult::opControl(){
 
     limitDB += 10;
     }
-    if (mainController2.get_digital(pros::E_CONTROLLER_DIGITAL_UP)){
+    if (mainController.get_digital(pros::E_CONTROLLER_DIGITAL_UP)){
         liftMotor.move_velocity(100);
-    } else if (mainController2.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)){
+    } else if (mainController.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)){
         liftMotor.move_velocity(-100);
     }
 }

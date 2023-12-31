@@ -1,9 +1,8 @@
 #include "main.h"
 #include "custom/mechs/catapult.hpp"
+#include "custom/mechs/chassis.hpp"
+#include "custom/mechs/intake.hpp" 
 #include "custom/brain/ports.hpp"
-
-pros::Controller mainController(CONTROLLER_MASTER);
-pros::Motor rollerMtr  (21, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
 
 /**
  * A callback function for LLEMU's center button.
@@ -13,6 +12,8 @@ pros::Motor rollerMtr  (21, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCOD
  */
 
 catapult masterCata;
+intake masterIntake;
+chassis masterChassis;
 
 void on_center_button() {
 	static bool pressed = false;
@@ -37,8 +38,6 @@ void initialize() {
 	pros::lcd::set_text(1, "Hello PROS User!");
 
 	pros::lcd::register_btn1_cb(on_center_button);
-
-	//masterWings.initilize(wingsPorts);
 }
 
 /**
@@ -93,13 +92,10 @@ void opcontrol() {
 		                 (pros::lcd::read_buttons() & LCD_BTN_CENTER) >> 1,
 		                 (pros::lcd::read_buttons() & LCD_BTN_RIGHT) >> 0);
 		
-		//masterChassis.opControl();
+		masterChassis.opControl();
+		masterIntake.opControl();
 		//masterWings.opControl(mSecWaitTime);
 		masterCata.opControl();
-
-		//if (mainController.get_digital(DIGITAL_DOWN)){
-		//	masterChassis.turnToAngle(50);
-		//}
 
 		pros::delay(mSecWaitTime);
 	}

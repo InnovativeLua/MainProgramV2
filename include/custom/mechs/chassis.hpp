@@ -3,11 +3,10 @@
 #include "main.h"
 #include "custom/brain/ports.hpp"
 
-pros::Motor leftFrontMotor(21, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
-
 class chassis {
 
-private:
+ public:
+
     pros::Motor leftFrontMotor = pros::Motor(5, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
     pros::Motor leftBackMotor = pros::Motor(5, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
     pros::Motor leftTopMotor = pros::Motor(5, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
@@ -16,13 +15,10 @@ private:
     pros::Motor rightBackMotor = pros::Motor(5, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
     pros::Motor rightTopMotor = pros::Motor(5, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
 
- public:
     enum E_driveControl {
         E_ARCADE_CONTROL,
         E_TANK_CONTROL
     };
-
-    chassis();
 
     std::vector<pros::Motor> ActiveLeftMotors = {leftFrontMotor, leftBackMotor, leftTopMotor};
     std::vector<pros::Motor> ActiveRightMotors = {rightFrontMotor, rightBackMotor, rightTopMotor};

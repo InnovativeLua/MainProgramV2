@@ -1,6 +1,6 @@
 #include "main.h"
-#include "catapult.hpp"
-#include "ports.hpp"
+#include "custom/mechs/catapult.hpp"
+#include "custom/brain/ports.hpp"
 
 pros::Controller mainController(CONTROLLER_MASTER);
 pros::Motor rollerMtr  (21, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);

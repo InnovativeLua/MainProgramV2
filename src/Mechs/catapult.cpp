@@ -1,4 +1,5 @@
-#include "catapult.hpp"
+#include "custom/mechs/catapult.hpp"
+
 pros::Controller mainController2(CONTROLLER_MASTER);
 
 void catapult::opControl(){

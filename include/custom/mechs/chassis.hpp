@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include "main.h"
-#include "ports.hpp"
+#include "custom/brain/ports.hpp"
 
 pros::Motor leftFrontMotor(21, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
 

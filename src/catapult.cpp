@@ -4,7 +4,7 @@ pros::Controller mainController2(CONTROLLER_MASTER);
 void catapult::opControl(){
     switch(cataState) {
     case E_MANUAL:
-        // code block
+    
         catapultMotor.move_velocity(100);
         break;
     case E_HOLDING:
@@ -13,7 +13,7 @@ void catapult::opControl(){
             cataState = E_MOVING;
             limitDB = 0;
         }
-        // code block
+
         break;
     case E_MOVING:
         if (cataLimit.get_value() && (limitDB > 100)){
@@ -22,12 +22,17 @@ void catapult::opControl(){
         } else {
             catapultMotor.move_velocity(50);
         }
-        // code block
+
         break;
     case E_AUTOFIRE:
-        // code block
+ 
         break;
 
     limitDB += 10;
+    }
+    if (mainController2.get_digital(pros::E_CONTROLLER_DIGITAL_UP)){
+        liftMotor.move_velocity(100);
+    } else if (mainController2.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)){
+        liftMotor.move_velocity(-100);
     }
 }

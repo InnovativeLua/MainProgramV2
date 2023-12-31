@@ -16,6 +16,7 @@ public:
     int limitDB = 0;
 
     pros::Motor catapultMotor = pros::Motor(9);
+    pros::Motor liftMotor = pros::Motor(9);
 
     pros::ADIButton cataLimit = pros::ADIButton('A');
 

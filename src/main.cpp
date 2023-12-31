@@ -2,6 +2,7 @@
 #include "custom/mechs/catapult.hpp"
 #include "custom/mechs/chassis.hpp"
 #include "custom/mechs/intake.hpp" 
+#include "custom/mechs/wings.hpp"
 #include "custom/brain/ports.hpp"
 
 /**
@@ -14,6 +15,7 @@
 catapult masterCata;
 intake masterIntake;
 chassis masterChassis;
+wings masterWings;
 
 void on_center_button() {
 	static bool pressed = false;
@@ -36,6 +38,8 @@ void on_center_button() {
 void initialize() {
 	pros::lcd::initialize();
 	pros::lcd::set_text(1, "Hello PROS User!");
+
+	masterWings.initilize();
 
 	pros::lcd::register_btn1_cb(on_center_button);
 }
@@ -94,7 +98,7 @@ void opcontrol() {
 		
 		masterChassis.opControl();
 		masterIntake.opControl();
-		//masterWings.opControl(mSecWaitTime);
+		masterWings.opControl(mSecWaitTime);
 		masterCata.opControl();
 
 		pros::delay(mSecWaitTime);

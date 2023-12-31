@@ -1,19 +1,20 @@
 #include "chassis.hpp"
 
 
+
 //CONSTANTS FOR THE TURN PID TEMPORARY REMOVE THESE LATER AND HAVE A MORE PERMENANT SOLUTION;
 const double P_X = 0.01;
 const double I_X = 0;
 const double D_X = 0;
 
 void chassis::updateLeft(int power){
-    for (auto i : left_motors) {
+    for (auto i : ActiveLeftMotors) {
         i.move(power);
     }
 }
 
 void chassis::updateRight(int power){
-    for (auto i : right_motors) {
+    for (auto i : ActiveRightMotors) {
         i.move(power);
     }
 }
@@ -26,31 +27,28 @@ void chassis::updateDrive(int leftPower, int rightPower){
 void chassis::opControl(){
     if (driverControlPeriod){
         if (driveControl == E_ARCADE_CONTROL){
+			/*
             int power = mainController.get_analog(ANALOG_LEFT_Y);
             int turn = mainController.get_analog(ANALOG_RIGHT_X);
             int leftPower = power + turn;
             int rightPower = power - turn;
 
             updateDrive(leftPower, rightPower);
-        } else if (driveControlType == E_TANK_CONTROL){
+
+			*/
+        } else if (driveControl == E_TANK_CONTROL){
+			/*
             int leftPower = mainController.get_analog(ANALOG_LEFT_Y);
             int rightPower = mainController.get_analog(ANALOG_RIGHT_Y);
 
             updateDrive(leftPower, rightPower);
+			*/
         }
     }
 }
 
-void chassis::initialize(std::vector<pros::Motor> leftMotors, std::vector<pros::Motor> rightMotors){
+void chassis::initialize(){
     ChassisIMU.reset(true);
-    left_motors = {};
-    right_motors = {};
-    for (auto i : leftMotorPorts) {
-        left_motors.push_back(new pros::Motor(i[0], i[1]));
-    }
-    for (auto i : rightMotorPorts) {
-        right_motors.push_back(new pros::Motor(i[0], i[1]));
-    }
 }
 
 /*
@@ -100,9 +98,3 @@ void chassis::turnToAngle(double targetAngle){
 	}
 }
 */
-
-chassis::chassis(){
-    ChassisIMU = pros::IMU(0);
-    left_tracker = pros::ADIEncoder(1, false);
-    right_tracker = pros::ADIEncoder(1, false);
-}

@@ -29,13 +29,5 @@ void catapult::opControl(){
         break;
 
     limitDB += 10;
-
-
-
     }
-}
-
-catapult::catapult(int cataport, int limitPort){
-    pros::Motor catapultMotor(cataport, pros::E_MOTOR_GEAR_100, false); //Initalizing the catapult motor object and sets to a red gear cartridge.
-    pros::ADIButton cataLimit(limitPort);
 }

@@ -15,16 +15,11 @@ public:
 
     int limitDB = 0;
 
-    catapult();
+    pros::Motor catapultMotor = pros::Motor(9);
 
-    pros::Motor catapultMotor = pros::Motor(0);
-
-    pros::ADIButton cataLimit = pros::ADIButton(0);
+    pros::ADIButton cataLimit = pros::ADIButton('A');
 
     int cataState = E_MANUAL;
 
     void opControl();
-
-    catapult(int cataport, int limitPort);
-
 };

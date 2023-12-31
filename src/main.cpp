@@ -3,6 +3,7 @@
 #include "Ports.hpp"
 
 pros::Controller mainController(CONTROLLER_MASTER);
+pros::Motor rollerMtr  (21, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
 
 /**
  * A callback function for LLEMU's center button.
@@ -11,10 +12,7 @@ pros::Controller mainController(CONTROLLER_MASTER);
  * "I was pressed!" and nothing.
  */
 
-pros::Motor cata_mtr(CATAPORT, pros::E_MOTOR_GEAR_100, false); //Initalizing the catapult motor object and sets to a red gear cartridge.
-catapult masterCata(CATAPORT, LIMIT_SWITCH);
-
-
+catapult masterCata;
 
 void on_center_button() {
 	static bool pressed = false;

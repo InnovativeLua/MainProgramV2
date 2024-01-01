@@ -6,7 +6,9 @@
 #include "custom/brain/ports.hpp"
 #include "custom/brain/autonselector.hpp"
 #include "custom/auton/autons.hpp"
+
 #include <vector>
+#include <cstdint>
 
 /**
  * A callback function for LLEMU's center button.
@@ -110,7 +112,9 @@ void autonomous() {
  * operator control task will be stopped. Re-enabling the robot will restart the
  * task, not resume it from where it left off.
  */
+
 void opcontrol() {
+	uint32_t clock = sylib::millis();
 	const int mSecWaitTime = 10;
 
 	while (true) {
@@ -123,6 +127,7 @@ void opcontrol() {
 		masterWings.opControl(mSecWaitTime);
 		masterCata.opControl();
 
-		pros::delay(mSecWaitTime);
+		//pros::delay(mSecWaitTime);
+		sylib::delay_until(&clock,10);
 	}
 }

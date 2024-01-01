@@ -16,3 +16,13 @@ void AutonSelector::addAutons(std::vector<Auton> autons) {
   currentAutonPage = 0;
   Autons.assign(autons.begin(), autons.end());
 }
+
+void AutonSelector::cycleAutons(){
+  if (autonCount==0) return;
+
+  if (currentAutonPage + 1 >= autonCount){
+    currentAutonPage = 0;
+  } else {
+    currentAutonPage += 1;
+  }
+}

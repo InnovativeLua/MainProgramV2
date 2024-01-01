@@ -22,12 +22,20 @@ AutonSelector masterAutonSelector = AutonSelector();
 
 //MasterAutonSelector.addAutons()
 
+bool pressed2 = false;
 void on_center_button() {
 	static bool pressed = false;
 	pressed = !pressed;
 	if (pressed) {
 		pros::lcd::set_text(2, "I was pressed!");
+		if (pressed2 == false){
+			masterAutonSelector.cycleAutons();
+			pressed2 = true;
+		}
 	} else {
+		if (pressed2 == true){
+			pressed2 = false;
+		}
 		pros::lcd::clear_line(2);
 	}
 }

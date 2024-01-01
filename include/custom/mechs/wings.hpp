@@ -27,3 +27,5 @@ public:
     pros::ADIDigitalOut wingsPiston1 = pros::ADIDigitalOut('A');
     pros::ADIDigitalOut wingsPiston2 = pros::ADIDigitalOut('B');
 };
+
+extern wings masterWings;

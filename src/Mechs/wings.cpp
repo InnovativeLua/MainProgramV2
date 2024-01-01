@@ -40,3 +40,5 @@ void wings::initilize(){
     cooldown = false;
     disableWings();
 }
+
+wings masterWings;

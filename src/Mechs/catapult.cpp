@@ -36,3 +36,5 @@ void catapult::opControl(){
         liftMotor.move_velocity(-100);
     }
 }
+
+catapult masterCata;

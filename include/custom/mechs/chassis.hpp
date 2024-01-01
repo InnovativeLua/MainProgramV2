@@ -49,3 +49,5 @@ class chassis {
 
     void initialize();
 };
+
+extern chassis masterChassis;

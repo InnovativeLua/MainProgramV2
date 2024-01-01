@@ -4,6 +4,9 @@
 #include "custom/mechs/intake.hpp" 
 #include "custom/mechs/wings.hpp"
 #include "custom/brain/ports.hpp"
+#include "custom/brain/autonselector.hpp"
+#include "custom/auton/autons.hpp"
+#include <vector>
 
 /**
  * A callback function for LLEMU's center button.
@@ -12,10 +15,10 @@
  * "I was pressed!" and nothing.
  */
 
-catapult masterCata;
-intake masterIntake;
-chassis masterChassis;
-wings masterWings;
+AutonSelector masterAutonSelector = AutonSelector();
+
+
+//MasterAutonSelector.addAutons()
 
 void on_center_button() {
 	static bool pressed = false;
@@ -40,6 +43,21 @@ void initialize() {
 	pros::lcd::set_text(1, "Hello PROS User!");
 
 	masterWings.initilize();
+
+	std::vector<Auton> autonsList = {};
+
+	Auton a_DefensiveAWP;
+	a_DefensiveAWP.autonFunction = *DefensiveAWP;
+	a_DefensiveAWP.Name = "DefensiveAWP";
+
+	Auton a_OffensiveAWP;
+	a_OffensiveAWP.autonFunction = *OffensiveAWP;
+	a_OffensiveAWP.Name = "OffensiveAWP";
+
+	autonsList.push_back(a_DefensiveAWP);
+	autonsList.push_back(a_OffensiveAWP);
+
+	masterAutonSelector.addAutons(autonsList);
 
 	pros::lcd::register_btn1_cb(on_center_button);
 }
@@ -73,7 +91,9 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {}
+void autonomous() {
+	masterAutonSelector.callSelectedAuton();
+}
 
 /**
  * Runs the operator control code. This function will be started in its own task

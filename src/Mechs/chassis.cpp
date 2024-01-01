@@ -98,3 +98,5 @@ void chassis::turnToAngle(double targetAngle){
 	}
 }
 */
+
+chassis masterChassis;

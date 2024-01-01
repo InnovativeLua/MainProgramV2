@@ -1,5 +1,5 @@
 #include <string>
 struct Auton{
-    void *autonFunction;
+    void (*autonFunction)();
     std::string Name;
 };

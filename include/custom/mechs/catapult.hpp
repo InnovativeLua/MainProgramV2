@@ -24,3 +24,5 @@ public:
 
     void opControl();
 };
+
+extern catapult masterCata;

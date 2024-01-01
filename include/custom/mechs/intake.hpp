@@ -8,3 +8,5 @@ public:
 
     void opControl();
 };
+
+extern intake masterIntake;

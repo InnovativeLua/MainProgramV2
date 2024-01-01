@@ -9,3 +9,5 @@ void intake::opControl(){
         intakeMotor.move_velocity(-100);
     }
 }
+
+intake masterIntake;

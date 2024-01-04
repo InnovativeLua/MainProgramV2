@@ -1,10 +1,9 @@
 #pragma once
-#include "main.h"
+#include "main.h" //Gets the pros namespace from main.
 
-class catapult{
+class catapult{ //Declares a class for the catapult.
 public:
-
-    //Control types are for driver control period
+    //Control types define what the catapult is doing at any point during OPControl.
     enum catapultStates {
         E_DISABLED,
         E_MANUAL,
@@ -13,16 +12,17 @@ public:
         E_AUTOFIRE
     };
 
-    int limitDB = 0;
+    int limitDB = 0; //Debounce for the limit siwtch in ms.
 
-    pros::Motor catapultMotor = pros::Motor(9);
-    pros::Motor liftMotor = pros::Motor(9);
+    pros::Motor catapultMotor = pros::Motor(12); //Declares a motor for the catapult with port "12"
+    pros::Motor liftMotor = pros::Motor(11); //Declares a motor for the lift with port "11"
 
-    pros::ADIButton cataLimit = pros::ADIButton('A');
+    pros::ADIButton cataLimit = pros::ADIButton('F'); //Declares a limit switch object with port "F"
 
-    int cataState = E_MANUAL;
+    int cataState = E_MANUAL; //The default state currently is manual.
 
-    void opControl();
+    void opControl(); //Function called every time the OPControl loop is ran in main.cpp.
 };
 
-extern catapult masterCata;
+extern catapult masterCata; //Declares an extern for a global catapult object to be used across multiple files.
+

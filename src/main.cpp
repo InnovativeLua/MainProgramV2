@@ -20,8 +20,6 @@
 AutonSelector masterAutonSelector = AutonSelector();
 
 
-//MasterAutonSelector.addAutons()
-
 bool pressed2 = false;
 void on_center_button() {
 	static bool pressed = false;

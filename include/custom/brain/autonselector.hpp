@@ -11,5 +11,5 @@ public:
   void callSelectedAuton();
   void printSelectedAuton();
   void addAutons(std::vector<Auton> autons);
-  void AutonSelector::cycleAutons();
+  void cycleAutons();
 };

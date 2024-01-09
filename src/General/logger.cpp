@@ -1,5 +1,6 @@
 #include "custom/general/logger.hpp"
 
+/*
 namespace Logger {
     // Global Logging Object.
     std::unique_ptr<logger::Log> g_log;
@@ -16,7 +17,7 @@ namespace Logger {
     }
 
     // Create our global logging object.
-    logger::Log::Log(const std::string& filepath) : m_logfile{} {
+    Log::Log(const std::string& filepath) : m_logfile{} {
         m_logfile.open(filepath);
     }
 
@@ -32,3 +33,5 @@ namespace Logger {
         m_logfile.close();
     }
 }
+
+*/

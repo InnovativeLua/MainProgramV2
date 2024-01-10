@@ -1,12 +1,46 @@
 #include "custom/mechs/motionprofiling.hpp"
+#include "custom/mechs/chassis.hpp"
 #include "main.h"
 
-void currentProfile::profileTask(){
+#define profileDebug
+
+void motionProfile::profileTask(){
     while (true){
         if (!profileActive){
-            pros::delay(100);
+            pros::delay(20);
             continue;
         }
-        pros::delay(100);
+        double motorSpeed = calculateOutput();
+        masterChassis.updateDrive(motorSpeed, motorSpeed);
+        pros::delay(20);
+        elapsedTime += 20;
+        if (elapsedTime > finishTime){
+            profileActive = false;
+        }
     }
+}
+
+double motionProfile::calculateOutput(){
+    if (activeProfileType == E_TRAPEZOIDAL){
+        return trapezoidalProfile();
+    }
+    return 0;
+}
+
+double motionProfile::trapezoidalProfile(){
+
+    #ifndef profileDebug
+    if (accelTime * 2 > finishTime){
+        print("Warning, profile accel time greater than finish.");
+    }
+    #endif
+
+    if (elapsedTime < accelTime){
+        return elapsedTime * maxSpeed/accelTime;
+    } else if (finishTime - elapsedTime < accelTime){
+        return (finishTime - elapsedTime) *  accelTime;
+    } else {
+        return maxSpeed;
+    }
+
 }

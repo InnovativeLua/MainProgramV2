@@ -1,3 +1,4 @@
+/*
 #pragma once
 
 // For the unique pointers.
@@ -34,3 +35,4 @@ namespace logger{
         std::string levels[5] = {"Fatal", "Error", "Warning", "Info", "Debug"};
     };
 }
+*/

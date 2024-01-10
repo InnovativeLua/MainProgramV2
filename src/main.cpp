@@ -6,6 +6,7 @@
 #include "custom/brain/ports.hpp"
 #include "custom/brain/autonselector.hpp"
 #include "custom/auton/autons.hpp"
+#include "custom/mechs/motionprofiling.hpp"
 
 #include <vector>
 #include <cstdint>
@@ -46,6 +47,10 @@ void on_center_button() {
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
+void callProfile(){
+	masterProfile.profileTask();
+}
+
 void initialize() {
 	sylib::initialize();
 
@@ -70,6 +75,8 @@ void initialize() {
 	masterAutonSelector.addAutons(autonsList);
 
 	pros::lcd::register_btn1_cb(on_center_button);
+
+	//pros::Task motionProfileTask(callProfile);
 }
 
 /**

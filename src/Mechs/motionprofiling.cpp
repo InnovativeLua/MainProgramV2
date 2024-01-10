@@ -44,3 +44,15 @@ double motionProfile::trapezoidalProfile(){
     }
 
 }
+
+void motionProfile::updateProfile(double i_maxSpeed, double i_accelTime, double i_finishTime){
+    maxSpeed = i_maxSpeed;
+    accelTime = i_accelTime;
+    i_finishTime = finishTime;
+}
+
+void motionProfile::disable(){
+    profileActive = false;
+}
+
+motionProfile masterProfile;

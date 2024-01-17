@@ -4,10 +4,24 @@
 
 void intake::opControl(){
     if (mainController.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
-        intakeMotor.move_velocity(100);
+        spinForward();
     } else if (mainController.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
-        intakeMotor.move_velocity(-100);
+        spinReverse();
+    } else {
+        stop();
     }
+}
+
+void intake::spinForward(){
+    intakeMotor.move_velocity(100);
+}
+
+void intake::spinReverse(){
+    intakeMotor.move_velocity(-100);
+}
+
+void intake::stop(){
+    intakeMotor.move_velocity(0);
 }
 
 intake masterIntake;

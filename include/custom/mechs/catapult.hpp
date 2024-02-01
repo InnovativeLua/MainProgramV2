@@ -14,10 +14,10 @@ public:
 
     int limitDB = 0; //Debounce for the limit siwtch in ms.
 
-    pros::Motor catapultMotor = pros::Motor(7); //Declares a motor for the catapult with port "12"
+    pros::Motor catapultMotor = pros::Motor(7); //Declares a motor for the catapult with port "7"
     pros::Motor liftMotor = pros::Motor(10); //Declares a motor for the lift with port "11"
 
-    pros::ADIButton cataLimit = pros::ADIButton('G'); //Declares a limit switch object with port "F"
+    pros::ADIButton cataLimit = pros::ADIButton('G'); //Declares a limit switch object with port "G"
 
     int cataState = E_MANUAL; //The default state currently is manual.
 

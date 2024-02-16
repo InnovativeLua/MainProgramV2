@@ -2,30 +2,32 @@
 
 #include "main.h"
 
-class wings{
+class wings{ //Class to hold the wings.
 public:
-    enum wingType {
-        E_WINGTYPE_ENABLED,
-        E_WINGTYPE_DISABLED,
+    enum wingType { //Different states the wings can be in.
+        E_WINGTYPE_ENABLED, //Enabled / Extended
+        E_WINGTYPE_DISABLED, //Disabled / Retracted
     };
 
-    const int totalCooldownTime = 200;
+    const int totalCooldownTime = 200; //Total time to wait between button presses.
 
-    int wingsTimeElapsed;
-    bool cooldown;
+    int wingsTimeElapsed; //Time the cooldown has been running.
+    bool cooldown; //Cooldown/Debounce is active or not.
 
-    int wingsState;
+    int wingsState; //The state the wings are in.
 
-    void enableWings();
+    void enableWings(); //Function to enable and extend the wings.
 
-    void disableWings();
+    void disableWings(); //Function to disabled and retract the wings.
 
-    void opControl(int driveTimeElapsed);
+    void opControl(int driveTimeElapsed); //Main operator control loop. driveTimeElapsed is amount of time between operator loops.
 
-    void initilize();
+    void initilize(); //Initalizes the wings, ran in the initalization stage.
 
-    pros::ADIDigitalOut wingsPiston1 = pros::ADIDigitalOut('A');
-    pros::ADIDigitalOut wingsPiston2 = pros::ADIDigitalOut('B');
+    pros::ADIDigitalOut wingsPiston1 = pros::ADIDigitalOut('A'); //Pnemautic cylinder object / right wing in the A port.
+    pros::ADIDigitalOut wingsPiston2 = pros::ADIDigitalOut('B'); //Pnemautic cylinder object / left wing in the B port.
 };
 
-extern wings masterWings;
+extern wings masterWings; //Global wings object to be assessed from other files.
+
+

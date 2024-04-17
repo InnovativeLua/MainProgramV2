@@ -9,7 +9,7 @@ public:
         E_WINGTYPE_DISABLED, //Disabled / Retracted
     };
 
-    const int totalCooldownTime = 200; //Total time to wait between button presses.
+    const int totalCooldownTime = 500; //Total time to wait between button presses.
 
     int wingsTimeElapsed; //Time the cooldown has been running.
     bool cooldown; //Cooldown/Debounce is active or not.
@@ -24,8 +24,7 @@ public:
 
     void initilize(); //Initalizes the wings, ran in the initalization stage.
 
-    pros::ADIDigitalOut wingsPiston1 = pros::ADIDigitalOut('A'); //Pnemautic cylinder object / right wing in the A port.
-    pros::ADIDigitalOut wingsPiston2 = pros::ADIDigitalOut('B'); //Pnemautic cylinder object / left wing in the B port.
+    pros::ADIDigitalOut wingsPiston1 = pros::ADIDigitalOut('B'); //Pnemautic cylinder object / right wing in the A port.
 };
 
 extern wings masterWings; //Global wings object to be assessed from other files.

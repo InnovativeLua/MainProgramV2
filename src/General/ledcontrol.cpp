@@ -5,5 +5,7 @@ void ledcontroller::defaultColor(){
 }
 
 void ledcontroller::initialize(){
-    
+    addrled.set_all(0xE62169);
 }
+
+ledcontroller masterLED;

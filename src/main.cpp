@@ -58,6 +58,7 @@ void initialize() {
 	pros::lcd::set_text(1, "Hello PROS User!");
 
 	masterWings.initilize();
+//	masterLED.initialize();
 
 	std::vector<Auton> autonsList = {};
 
@@ -129,6 +130,12 @@ void autonomous() {
 void opcontrol() {
 	uint32_t clock = sylib::millis();
 	const int mSecWaitTime = 10;
+	masterChassis.driveControl = masterChassis.E_TANK_CONTROL;
+	masterChassis.driverControlPeriod = true;
+
+	//auto myLights = sylib::Addrled(0, 'A', 32);
+	//myLights.turn_on();
+	//myLights.set_all(0x00FF00);
 
 	while (true) {
 		pros::lcd::print(0, "%d %d %d", (pros::lcd::read_buttons() & LCD_BTN_LEFT) >> 2,
@@ -139,6 +146,7 @@ void opcontrol() {
 		masterIntake.opControl();
 		masterWings.opControl(mSecWaitTime);
 		masterCata.opControl();
+
 
 		//pros::delay(mSecWaitTime);
 		sylib::delay_until(&clock,10);

@@ -1,8 +1,11 @@
 #pragma once
 #include "main.h"
 class ledcontroller{
-    sylib::Addrled addrled = sylib::Addrled(20,20,64);
+public:
+    sylib::Addrled addrled = sylib::Addrled(22,'C',64);
 
     void initialize();
     void defaultColor();
 };
+
+extern ledcontroller masterLED;

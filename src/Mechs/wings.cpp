@@ -3,13 +3,11 @@
 
 void wings::enableWings(){ //Function which sets the wings to enabled and extends the pneumatic cylinders.
     wingsPiston1.set_value(true); //Sets right piston to extend.
-    wingsPiston2.set_value(true); //Sets left piston to extend.
     wingsState = E_WINGTYPE_ENABLED; //Updates the state of the wings to enabled.
 }
 
 void wings::disableWings(){ //Function which sets the wings to disabled and retracts the pneumatic cylinders.
     wingsPiston1.set_value(false); //Sets right piston to retract.
-    wingsPiston2.set_value(false); //Sets left piston to retract.
     wingsState = E_WINGTYPE_DISABLED; //Updates the state of the wings to disabled.
 }
 
@@ -23,7 +21,7 @@ void wings::opControl(int driveTimeElapsed){
         wingsTimeElapsed = 0; //Resets the cooldown timer.
         cooldown = false; //Turns off the cooldown
     }
-	if (mainController.get_digital(DIGITAL_L1)){ //Looks for the press of L1 on the controller.
+	if (mainController.get_digital(DIGITAL_RIGHT)){ //Looks for the press of L1 on the controller.
         if (wingsState == E_WINGTYPE_ENABLED){ //If wings are enabled.
             disableWings(); //Sets wings to disabled state.
         } else if (wingsState == E_WINGTYPE_DISABLED){ //If wings are disabled.
@@ -41,3 +39,4 @@ void wings::initilize(){ //Initalizes the wings, ran in the initalization stage.
 }
 
 wings masterWings; //Global wings object to be assessed from other files.
+

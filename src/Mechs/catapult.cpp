@@ -10,11 +10,14 @@ void catapult::opControl(){
             break; //Prevents the rest of the code from running.
         }
         if (mainController.get_digital(pros::E_CONTROLLER_DIGITAL_L1)){ //Looks for the press of L1 on the controller.
-            catapultMotor.move_velocity(100); //Moves the catapult forwards.
+            catapultMotor.move_velocity(200); //Moves the catapult forwards.
+            catapultMotor2.move_velocity(200); //Moves the catapult backwards.
         } else if (mainController.get_digital(pros::E_CONTROLLER_DIGITAL_L2)){ //Looks for the press of L2 on the controller.
-            catapultMotor.move_velocity(-100); //Moves the catapult backwards.
+            catapultMotor.move_velocity(-200); //Moves the catapult backwards.
+            catapultMotor2.move_velocity(-200); //Moves the catapult backwards.
         } else {
             catapultMotor.move_velocity(0); //Stops the catapult.
+            catapultMotor2.move_velocity(0); //Moves the catapult backwards.
         }
 
         if (mainController.get_digital(pros::E_CONTROLLER_DIGITAL_B)){ //Looks for the press of B on the controller.
@@ -50,9 +53,9 @@ void catapult::opControl(){
     limitDB += 10; //Adds 10ms to the limit debounce. OPControl loop runs every 10ms.
     }
     if (mainController.get_digital(pros::E_CONTROLLER_DIGITAL_UP)){ //Looks for the press of Up on the controller.
-        liftMotor.move_velocity(100); //Moves the lift up.
+        liftPistons.set_value(false);
     } else if (mainController.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)){ //Looks for the press of Down on the controller.
-        liftMotor.move_velocity(-100); //Moves the lift down.
+        liftPistons.set_value(true);
     }
 }
 

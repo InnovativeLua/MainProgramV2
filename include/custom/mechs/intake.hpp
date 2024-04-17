@@ -16,11 +16,11 @@ public:
 
     int toggleDB = 0; //Debounce for the toggle in ms.
 
-    void intake::spinForward(); //Function when called spins the intake forward.
+    void spinForward(); //Function when called spins the intake forward.
 
-    void intake::spinReverse(); //Function when called spins the intake reverse.
+    void spinReverse(); //Function when called spins the intake reverse.
 
-    void intake::stop(); //Function when called stops the intake from moving.
+    void stop(); //Function when called stops the intake from moving.
 
     void opControl(); //Function called every time the OPControl loop is ran in main.cpp.
 

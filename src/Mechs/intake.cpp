@@ -64,12 +64,12 @@ void intake::opControl(){
 
  //Function when called spins the intake forwards.
 void intake::spinForward(){
-    intakeMotor.move_velocity(100); //Sets the intake motor to 100 velocity or 50% speed.
+    intakeMotor.move_velocity(200); //Sets the intake motor to 100 velocity or 50% speed.
 }
 
  //Function when called spins the intake reverse.
 void intake::spinReverse(){
-    intakeMotor.move_velocity(-100); //Sets the intake motor to -100 velocity or -50% speed.
+    intakeMotor.move_velocity(-200); //Sets the intake motor to -100 velocity or -50% speed.
 }
 
 //Function when called stops the intake from moving.
